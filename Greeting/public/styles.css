@@ -1,0 +1,16 @@
+body {
+  background-color: aliceblue;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+form {
+  margin-top: 100px;
+}
+
+#greeting {
+  margin-top: 20px;
+  font-size: 1.5em;
+  color: green;
+  margin-top: 50px;
+}
