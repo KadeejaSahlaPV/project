@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countdown Timer</title>
+    <style>
+        body{
+            background-color: #0d0b0f;
+            font-family: Arial, sans-serif;
+            color:white;
+        }
+        h3{
+            margin-top: 50px;
+            text-align: center;
+            font-size: 30px;
+        }
+        div{
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 75vh;
+            margin: 0;
+        }
+        #timer {
+            font-size: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3>Countdown Timer</h3>
+    <div>
+    <div id="timer">Set a time and click Start</div>
+    <input type="time" id="timeInput" step="1">
+    <button onclick="startCountdown()">Start</button>
+    </div>
+
+    <script>
+        let timer;
+        let timeInput = document.getElementById('timeInput');
+        let timerDisplay = document.getElementById('timer');
+
+        function startCountdown() {
+            let userInput = timeInput.value;
+            let totalSeconds = convertToSeconds(userInput);
+            displayTime(totalSeconds);
+            timer = setInterval(function() {
+                totalSeconds--;
+                displayTime(totalSeconds);
+
+                if (totalSeconds <= 0) {
+                    clearInterval(timer);
+                    alert('Countdown complete!');
+                }
+            }, 1000); 
+        }
+
+        function convertToSeconds(time) {
+            let parts = time.split(':');
+            return parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60;
+        }
+
+        function displayTime(seconds) {
+            let minutes = Math.floor(seconds / 60);
+            let remainingSeconds = seconds % 60;
+
+            let formattedTime = `${padZero(minutes)}:${padZero(remainingSeconds)}`;
+
+            timerDisplay.textContent = formattedTime;
+        }
+
+        function padZero(number) {
+            return number < 10 ? '0' + number : number;
+        }
+    </script>
+</body>
+</html>
